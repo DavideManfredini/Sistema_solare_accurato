@@ -66,7 +66,7 @@ public class OrbitMotion : MonoBehaviour
     double CalcolaGiorniTrascorsi()
     {
         DateTime giornoAttuale = DateTime.Now;
-        DateTime giornoFuturo = new DateTime(2032, 09, 16, 15, 04, 0);
+        DateTime giornoFuturo = new DateTime(2357, 05, 6, 00, 00, 0);
 
         DateTime giorno0 = new DateTime(2022, 09, 14, 0, 0, 0);
         //TimeSpan tempoPassato = giornoAttuale - giorno0;
