@@ -24,7 +24,12 @@ public class OrbitMotion : MonoBehaviour
             orbitActive = false;
             return;
         }
-
+        CalcolaGiorniTrascorsi();
+        orbitProgress = (float)(orbitProgress - CalcolaGradi());
+        if (orbitProgress < 0)
+        {
+            orbitProgress = 1f + orbitProgress;
+        }
         SetOrbitingObjectPosition();
         StartCoroutine(AnimateOrbit());
     }
@@ -58,10 +63,37 @@ public class OrbitMotion : MonoBehaviour
         }
         
     }
+    double CalcolaGiorniTrascorsi()
+    {
+        DateTime giornoAttuale = DateTime.Now;
+        DateTime giornoFuturo = new DateTime(2032, 09, 16, 15, 04, 0);
 
-    
+        DateTime giorno0 = new DateTime(2022, 09, 14, 0, 0, 0);
+        //TimeSpan tempoPassato = giornoAttuale - giorno0;
+        TimeSpan tempoPassato = giornoFuturo - giorno0;
+        double orePassate = tempoPassato.TotalHours;
+        Debug.Log(orePassate);
+
+        return orePassate;
+
+    }
+
+    double CalcolaGradi()
+    {
+        double gradiDaTogliere = CalcolaGiorniTrascorsi() * gradiorari;
+        Debug.LogError(this.gameObject.name);
+        Debug.LogError(gradiDaTogliere);
+        while (gradiDaTogliere > 360)
+        {
+            gradiDaTogliere -= 360;
+        }
+        gradiDaTogliere = gradiDaTogliere / 360;
+
+        return gradiDaTogliere;
+    }
 
 
 
-    
+
+
 }
